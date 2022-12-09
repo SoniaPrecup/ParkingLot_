@@ -1,8 +1,10 @@
 package com.parking.parkinglot.entities;
 
+import jakarta.inject.Inject;
 import jakarta.persistence.*;
 
 import java.util.Collection;
+import java.util.List;
 
 @Entity
 public class User {
@@ -47,4 +49,14 @@ public class User {
     }
 
     private String password;
+    private Collection<Car> cars;
+
+    @OneToMany(mappedBy = "owner")
+    public Collection<Car> getCars(){
+        return cars;
+    }
+    public void setCars(Collection<Car> cars){
+        this.cars=cars;
+    }
+
 }
