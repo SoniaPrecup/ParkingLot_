@@ -4,8 +4,9 @@
 <t:pageTemplate pageTitle="Cars">
     <h1>Cars</h1>
     <form method="POST" action="${pageContext.request.contextPath}/Cars">
-    <a href="${pageContext.request.contextPath}/AddCar" class="btn btn-primary btn-lg">Add Car</a>
-    <button class="btn btn-danger" type="submit">Delete Cars</button>
+        <c:if test="${pageContext.request.isUserInRole('WRITE_CARS')}">
+            <a href="${pageContext.request.contextPath}/AddCar" class="btn btn-primary btn-lg">Add Car</a>
+        <button class="btn btn-danger" type="submit">Delete Cars</button>
         <div class="container text-center">
         <c:forEach var="car" items="${cars}">
         <div class="row">
@@ -27,6 +28,7 @@
         </div>
         </c:forEach>
     </div>
+        </c:if>
     </form>
     <h5>Free parking spots: ${numberOfFreeParkingSpots}</h5>
 </t:pageTemplate>
